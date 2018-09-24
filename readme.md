@@ -43,7 +43,7 @@ $ docker-compose up -d
 $ docker-compose run composer install --prefer-dist --no-interaction && composer app-setup
 ```
 
-### remove
+### down
 
 ```bash
 $ docker-compose down
