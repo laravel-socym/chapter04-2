@@ -1,65 +1,56 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# 第二部 Chapter 4 / リクエスト・レスポンス
+4-3, 4-4
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Sample URI
 
-## About Laravel
+| Domain | Method   | URI      | Name | Action                                    | Middleware   |
+|--------|----------|----------|------|-------------------------------------------|--------------|
+|        | GET|HEAD | /        |      | Closure                                   | web          |
+|        | GET|HEAD | blade    |      | App\Http\Controllers\BladeAction          | web          |
+|        | GET|HEAD | download |      | App\Http\Controllers\DownloadAction       | web          |
+|        | GET|HEAD | json     |      | App\Http\Controllers\JsonAction           | web          |
+|        | GET|HEAD | jsonp    |      | App\Http\Controllers\JsonpAction          | web          |
+|        | GET|HEAD | media    |      | App\Http\Controllers\MediaAction          | web          |
+|        | GET|HEAD | payload  |      | App\Http\Controllers\ArticlePayloadAction | web          |
+|        | GET|HEAD | plain    |      | App\Http\Controllers\PlainTextAction      | web          |
+|        | GET|HEAD | sse      |      | App\Http\Controllers\StreamAction         | web          |
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## 対応表
+ 
+ - [リスト4.3.1.1：文字列からレスポンスを生成する](app/Http/Controllers/PlainTextAction.php)
+ - [リスト4.3.1.2：ビューを使ってレスポンスを生成する](app/Http/Controllers/BladeAction.php)
+ - [リスト4.3.1.3：文字列または文字列配列からJSONレスポンスを生成する](app/Http/Controllers/JsonAction.php)
+ - [リスト4.3.1.4：文字列または文字列配列からJSONPレスポンスを生成する](app/Http/Controllers/JsonpAction.php)
+ - [リスト4.3.1.5：任意のメディアタイプ指定](app/Http/Controllers/MediaAction.php)
+ - [リスト4.3.1.6：ファイルパスを指定してダウンロードレスポンスを生成する](app/Http/Controllers/DownloadAction.php)
+ - [リスト4.3.1.8：SSE 実装例](app/Http/Controllers/StreamAction.php)
+ 
+ - [リスト4.3.1.14：ArticlePayloadActionクラス](app/Http/Controllers/ArticlePayloadAction.php)
+ - [リスト4.3.1.15：ArticleResourceクラス実装例](app/Http/Resources/ArticleResource.php)
+ - [リスト4.3.1.16：UserResourceクラス実装](app/Http/Resources/UserResource.php)
+ - [リスト4.3.1.17：CommentResourceクラス実装](app/Http/Resources/CommentResource.php)
+ - [リスト4.3.1.18：CommentResourceCollectionクラス実装例](app/Http/Resources/CommentResourceCollection.php)
+ 
+ - [リスト4.4.2.2：リクエストヘッダのログ出力 | リスト4.4.2.3：レスポンスヘッダのログ出力](app/Http/Middleware/HeaderDumper.php)
+ - [リスト4.4.2.4：Kernelクラスへのミドルウェア追加例](app/Http/Kernel.php)
+ 
+## For Docker
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### setup 
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+```bash
+$ docker-compose up -d
+$ docker-compose run composer install --prefer-dist --no-interaction && composer app-setup
+```
 
-## Learning Laravel
+### remove
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+```bash
+$ docker-compose down
+```
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+### コンテナのキャッシュが残っている場合
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+$ docker-compose build --no-cache
+```
