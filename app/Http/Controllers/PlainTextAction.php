@@ -8,6 +8,8 @@ use Illuminate\Http\Response;
 // 同一クラス名となりますので、このサンプルではファサードを別名としています
 use Illuminate\Support\Facades\Response as LaravelResponse;
 
+use function response;
+
 class PlainTextAction
 {
     public function __invoke(Request $request): Response

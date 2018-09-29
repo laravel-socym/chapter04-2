@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 // 同一クラス名となりますので、このサンプルではファサードを別名としています
 use Illuminate\Support\Facades\Response as LaravelResponse;
 
+use function response;
+
 class DownloadAction
 {
     public function __invoke(Request $request): BinaryFileResponse

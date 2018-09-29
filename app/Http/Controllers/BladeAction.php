@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\View;
 // 同一クラス名となりますので、このサンプルではファサードを別名としています
 use Illuminate\Support\Facades\Response as LaravelResponse;
 
+use function response;
+use function view;
+
 class BladeAction
 {
     public function __invoke(Request $request): Response

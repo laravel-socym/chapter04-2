@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 
+use function response;
+
 class MediaAction
 {
     public function __invoke(Request $request): JsonResponse

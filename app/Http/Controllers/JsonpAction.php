@@ -8,6 +8,8 @@ use Illuminate\Http\JsonResponse;
 // 同一クラス名となりますので、このサンプルではファサードを別名としています
 use Illuminate\Support\Facades\Response as LaravelResponse;
 
+use function response;
+
 class JsonpAction
 {
     public function __invoke(Request $request): JsonResponse

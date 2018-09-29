@@ -6,6 +6,8 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 
+use function sprintf;
+
 class ArticleResource extends JsonResource
 {
     public static $wrap = '';
